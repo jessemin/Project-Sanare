@@ -1,0 +1,133 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <script>
+        $(function () {
+            $("#dialog").dialog();
+        });
+    </script>
+
+    <div class="container tim-container" style="max-width:80%; padding-top:3%">
+        <h1 class="text-center" style="font-size:80px; font-family: 'Hanna', sans-serif;">My Crush Story</h1>
+    </div>
+
+    {% if error_messages %}
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" style="font-size:30px; font-family: 'Hanna', sans-serif;">Sorry</h4>
+                </div>
+                {% for message in error_messages %}
+                    <div class="modal-body">
+                        <h3 class="text-center">You've already sent an arrow during last 3 days.</h3>
+                    </div>
+                {% endfor %}
+                <div class="modal-footer">
+                    <a href="/home">
+                        <button type="button" class="btn btn-default" class="text-center"
+                                style="font-family: 'Jeju Gothic', sans-serif;">Back
+                        </button>
+                    </a>
+                    <a href="/about">
+                        <button type="button" class="btn btn-default" class="text-center"
+                                style="font-family: 'Jeju Gothic', sans-serif;">SomeLove Tutorial
+                        </button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+
+    {% if matched %}
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" style="font-size:40px; font-family: 'Hanna', sans-serif;">
+                        Congratulations!</h4>
+                </div>
+                <div class="modal-body">
+                    <h3 class="text-center" style="font-family: 'Jeju Gothic', sans-serif;">
+                        <a href="http://facebook.com/{{ matched.id2 }}">
+                            <small>You exchanged an arrow with <b>{{ matched.get_partner_name }}</b>.</small>
+                            <img
+                                    src="//graph.facebook.com/{{ matched.id2 }}/picture?width=320&height=320"></a>
+                    </h3>
+                </div>
+                <div class="modal-footer">
+                    <a href="/home">
+                        <button type="button" class="btn btn-default" class="text-center"
+                                style="font-family: 'Jeju Gothic', sans-serif;">Back
+                        </button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="dropdown" style="max-width:80%; padding-top:3%">
+                <h2 id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                    class="text-center" style="font-size:40px; font-family: 'Hanna', sans-serif;">
+                    #Successful
+                    <span class="caret"></span>
+                </h2>
+                <table style="margin-right: auto; margin-left: auto;">
+                    <tr>
+                        <td><h3 class="text-center" style="font-family: 'Hanna', sans-serif;">&nbsp;&nbsp;&nbsp;Name&nbsp;&nbsp;&nbsp;</h3>
+                        </td>
+                        <td><h3 class="text-center" style="font-family: 'Hanna', sans-serif;">&nbsp;&nbsp;&nbsp;Name&nbsp;&nbsp;&nbsp;</h3>
+                        </td>
+                        <td><h3 class="text-center" style="font-family: 'Hanna', sans-serif; font-size: 20px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Becoming
+                            Love Since&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h3></td>
+                    </tr>
+                    {% if matches %}
+                        {% for match in matches %}
+                            <tr>
+                                <td><h5 class="text-center"
+                                        style="font-family: 'Jeju Gothic', sans-serif;">{{ match.name1 }}</h5></td>
+                                <td><h5 class="text-center"
+                                        style="font-family: 'Jeju Gothic', sans-serif;">{{ match.name2 }}</h5></td>
+                                <td><h5 class="text-center"
+                                        style="font-family: 'Jeju Gothic', sans-serif;">{{ match.pub_date }}</h5></td>
+                            </tr>
+                        {% endfor %}
+                    {% endif %}
+                </table>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="dropdown" style="max-width:80%; padding-top:3%">
+                <h2 id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                    class="text-center" style="font-size:40px; font-family: 'Hanna', sans-serif;">
+                    #Waiting
+                    <span class="caret"></span>
+                </h2>
+                <table style="margin-right: auto; margin-left: auto;">
+                    <tr>
+                        <td><h3 class="text-center" style="font-family: 'Hanna', sans-serif;">&nbsp;&nbsp;&nbsp;Sent to&nbsp;&nbsp;&nbsp;</h3>
+                        </td>
+                        <td><h3 class="text-center" style="font-family: 'Hanna', sans-serif;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sent
+                            on&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h3></td>
+                    </tr>
+                    {% if posts %}
+                        {% for post in posts %}
+                            <tr>
+                                <td><h5 class="text-center"
+                                        style="font-family: 'Jeju Gothic', sans-serif;">{{ post.receiver_name }}&nbsp;&nbsp;&nbsp;</h5>
+                                </td>
+                                <td><h5 class="text-center"
+                                        style="font-family: 'Jeju Gothic', sans-serif;">{{ post.pub_date }}&nbsp;&nbsp;&nbsp;</h5></td>
+                            </tr>
+                        {% endfor %}
+                    {% endif %}
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="space"></div>
+    <div class="space"></div>
+
+
+{% endblock %}

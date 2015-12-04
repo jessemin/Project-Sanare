@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+
+{% block content %}
+    {% if request.GET.next %}
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" style="font-size:20px;font-family: 'Jeju Gothic', sans-serif;">Sorry, you must log in first.
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <h3 class="text-center">
+                        <small><a href="{% url 'social:begin' 'facebook' %}?next={{ request.path }}">
+                            <button type="button" class="btn btn-default"><strong>Simple Login with Facebook&nbsp;</strong> <img
+                                    src="/static/facebookfav.png" height="20" width="20" alt="facebook"></img></button>
+                        </a></small>
+                    </h3>
+                </div>
+                <div class="modal-footer">
+                    <a href="/about">
+                        <button type="button" class="btn btn-default">More</button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+    <hr>
+    <div class="container tim-container" style="max-width:1000px; padding-top:10px">
+        <h1 class="text-center" style="font-size:100px; font-family: 'Hanna', sans-serif;">SomeLove<br></h1>
+
+        <h2 class="text-center" style="font-family: 'Jeju Gothic', sans-serif;">Find out Your Crush's Mind
+            <a href="https://play.google.com/store/apps/details?id=com.somelove.jesikmin.somelove">
+                <img alt="Get it on Google Play"
+                     src="https://developer.android.com/images/brand/en_generic_rgb_wo_60.png"/>
+            </a>
+        </h2>
+        <br>
+
+        <p>
+
+        <h1 style="font-family: 'Jeju Gothic', sans-serif;">
+            <small>How to deal with your crush?</small>
+            <br>
+            <small>What if you can check whether your crush likes you?</small>
+            <br>
+            <small>SomeLove turns your something into love.</small>
+        </h1>
+        </p>
+        <!--     end extras -->
+    </div>
+    <!-- end container -->
+
+    <div class="container tim-container" style="max-width:800px; padding-top:100px">
+        {% if user and not user.is_anonymous %}
+        {% else %}
+            <h3 class="text-center">
+                <a href="{% url 'social:begin' 'facebook' %}?next={{ request.path }}"
+                   style="font-size:20px;font-family: 'Jeju Gothic', sans-serif;">Simple Login with Facebook&nbsp;&nbsp;
+                    <img src="/static/facebookfav.png" height="50" width="50" alt="facebook">
+                </a>
+
+            </h3>
+        {% endif %}
+
+    </div>
+
+    <div class="space"></div>
+
+{% endblock %}

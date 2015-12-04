@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+    <style>
+        .thumbnail.with-caption {
+            display: inline-block;
+            background: #f5f5f5;
+        }
+
+        .thumbnail.with-caption p {
+            margin: 0;
+            padding-top: 0.5em;
+        }
+
+        .thumbnail.with-caption small:before {
+            content: '\2014 \00A0';
+        }
+
+        .thumbnail.with-caption small {
+            width: 100%;
+            text-align: right;
+            display: inline-block;
+            color: #999;
+        }
+    </style>
+
+    <div class="container tim-container" style="max-width:80%; padding-top:3%">
+        <h1 class="text-center" style="font-size:80px; font-family: 'Hanna', sans-serif;">My Friends</h1>
+
+        <h2 class="text-center" style="font-size:60px; font-family: 'Hanna', sans-serif;">
+            <small class="subtitle">You can only see the FB friends who are also using SomeLove.</small>
+        </h2>
+    </div>
+
+    <div class="container tim-container" style="max-width:80%; padding-top:3%">
+        {% for each_info in info %}
+            <div class="thumbnail with-caption">
+                <a href="{% url 'send_post' each_info.3 each_info.0 %}" name="image-{{ each_info.2 }}"
+                   data-title={{ each_info.0 }}>
+                    <img class="img-rounded" width="320" height="320" src="{{ each_info.1 }}" alt="{{ each_info.0 }}">
+                </a>
+
+                <h3 class="text-center" style="font-family: 'Jeju Gothic', sans-serif;">{{ each_info.0 }}</h3>
+            </div>
+        {% endfor %}
+    </div>
+
+    <div class="space"></div>
+{% endblock %}

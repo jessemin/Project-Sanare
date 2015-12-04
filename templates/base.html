@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+
+{% load staticfiles %}
+
+<html lang="en-gb" dir="ltr">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <link rel="icon" type="image/png" href="/static/icon.png">
+
+    <link href="/static/x_GSDK_production_1.3/bootstrap3/css/bootstrap.css" rel="stylesheet"/>
+    <link href="/static/x_GSDK_production_1.3/bootstrap3/css/font-awesome.css" rel="stylesheet"/>
+
+    <link href="/static/x_GSDK_production_1.3/assets/css/get-shit-done.css" rel="stylesheet"/>
+    <link href="/static/x_GSDK_production_1.3/assets/css/demo.css" rel="stylesheet"/>
+
+    <!--     Font Awesome     -->
+    <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Exo' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/earlyaccess/hanna.css' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/earlyaccess/jejugothic.css' rel='stylesheet' type='text/css'>
+
+</head>
+
+<body>
+<div id="navbar-full">
+    <div id="navbar">
+        <!--
+            navbar-default can be changed with navbar-ct-blue navbar-ct-azzure navbar-ct-red navbar-ct-green navbar-ct-orange
+            -->
+        <nav class="navbar navbar-ct-blue navbar-transparent navbar-fixed-top" role="navigation">
+
+            <div class="container">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse"
+                            data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="/" style="font-size:40px; font-family: 'Hanna', sans-serif;">SomeLove</a>
+
+                    <div style="font-family: 'Hanna', sans-serif;">Turn your Crush into Love </div>
+                </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                    </li>
+                        <li><a href="/home" style="font-size:20px;font-family: 'Jeju Gothic', sans-serif;"><span
+                                class="glyphicon glyphicon-home" aria-hidden="true"></span> Home</a>
+                        </li>
+
+                        <li><a href="/about" style="font-size:20px; font-family: 'Jeju Gothic', sans-serif;"><span
+                                class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>
+                            About</a></li>
+
+                        {% if user and not user.is_anonymous %}
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"
+                                   style="font-size:20px;font-family: 'Jeju Gothic', sans-serif;"> <span
+                                        class="glyphicon glyphicon-heart" aria-hidden="true"></span> Activities <b
+                                        class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="/post"
+                                           style="font-size:15px;font-family: 'Jeju Gothic', sans-serif;"><span
+                                            class="glyphicon glyphicon-heart"
+                                            aria-hidden="true"></span> My Crushes</a></li>
+                                    <li class="divider"></li>
+                                    <li><a href="/logout"
+                                           style="font-size:15px;font-family: 'Jeju Gothic', sans-serif;"><span
+                                            class="glyphicon glyphicon-log-out" aria-hidden="true"></span> LogOut</a></li>
+                                </ul>
+                            </li>
+                        {% endif %}
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        {% if user and not user.is_anonymous %}
+                            <li><a href="/home"
+                                   style="font-size:20px;font-family: 'Jeju Gothic', sans-serif;color:#000000">Hello, <strong>&nbsp;{{ user.get_username }}</strong>
+                                </a>
+                            </li>
+                            <li><a href="/logout" style="font-size:15px;font-family: 'Jeju Gothic', sans-serif;"><span
+                                    class="glyphicon glyphicon-log-out" aria-hidden="true"></span> LogOut</a></li>
+                        {% else %}
+
+                            <li>
+                                <a href="{% url 'social:begin' 'facebook' %}?next={{ request.path }}"
+                                   style="font-size:20px; font-family: 'Jeju Gothic', sans-serif;">
+                                    <span class="glyphicon glyphicon-record"
+                                          aria-hidden="true"></span>
+                                    LogIn
+                                </a>
+                            </li>
+                            <li>
+                        </li>
+                        {% endif %}
+                    </ul>
+                </div>
+                <!-- /.navbar-collapse -->
+            </div>
+            <!-- /.container-fluid -->
+        </nav>
+        <div class="blurred-container">
+            <div class="img-src" style="background-image: url('/static/x_GSDK_production_1.3/assets/img/balloons.jpg')">
+            </div>
+        </div>
+    </div>
+    <!--  end navbar -->
+
+</div>
+<!-- end menu-dropdown -->
+
+<div class="main">
+    {% block content %}
+    {% endblock %}
+</div>
+
+<!-- end main -->
+
+
+<div class="modal-footer">
+    <div class="text-left">
+        <p class="text-muted">
+            developed by a developer
+        </p>
+    </div>
+</div>
+
+</body>
+
+<script src="/static/x_GSDK_production_1.3/jquery/jquery-1.10.2.js" type="text/javascript"></script>
+<script src="/static/x_GSDK_production_1.3/assets/js/jquery-ui-1.10.4.custom.min.js" type="text/javascript"></script>
+
+<script src="/static/x_GSDK_production_1.3/bootstrap3/js/bootstrap.js" type="text/javascript"></script>
+<script src="/static/x_GSDK_production_1.3/assets/js/gsdk-checkbox.js"></script>
+<script src="/static/x_GSDK_production_1.3/assets/js/gsdk-radio.js"></script>
+<script src="/static/x_GSDK_production_1.3/assets/js/get-shit-done.js"></script>
+
+<script src="/static/x_GSDK_production_1.3/assets/js/custom.js"></script>
+
+</html>

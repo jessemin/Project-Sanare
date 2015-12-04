@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+    <style>
+        .center-block {
+            display: block;
+            margin-left: auto;
+            margin-right: 3%;
+        }
+
+        .thumbnail.with-caption {
+            display: inline-block;
+            background: #f5f5f5;
+        }
+
+        .thumbnail.with-caption p {
+            margin: 0;
+            padding-top: 0.5em;
+        }
+
+        .thumbnail.with-caption small:before {
+            content: '\2014 \00A0';
+        }
+
+        .thumbnail.with-caption small {
+            width: 100%;
+            text-align: right;
+            display: inline-block;
+            color: #999;
+        }
+
+    </style>
+
+    <div class="container tim-container" style="max-width:80%; padding-top:3%">
+        <h1 class="text-center" style="font-size:80px; font-family: 'Hanna', sans-serif;">My Friends
+            <br>
+        <span style="font-family: 'Hanna', sans-serif; font-size: 50px;">
+            <small> Do you really want to send an arrow to {{ each_info.0 }}?</small>
+        </span>
+        </h1>
+    </div>
+    <div class="space-30"></div>
+
+    <div class="row">
+        <div class="col-md-6 col-xs-6">
+            <div>
+                <div class="center-block">
+                    <img class="img-rounded center-block" width="400" height="400" src="{{ each_info.1 }}"
+                         alt="{{ each_info.0 }}">
+
+                    <h3 class="text-center" style="font-family: 'Jeju Gothic', sans-serif;">{{ each_info.0 }}</h3>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-xs-6">
+            <a href="{% url 'send_post2' each_info.3 each_info.0 %}">
+                <button type="button" class="btn btn-success" style="font-family: 'Jeju Gothic', sans-serif;"><h3>Send</h3></button>
+            </a>
+
+            <div class="space-30"></div>
+            <a href="/home">
+                <button type="button" class="btn btn-warning" style="font-family: 'Jeju Gothic', sans-serif;"><h3>Back</h3></button>
+            </a>
+        </div>
+    </div>
+
+    <div class="space"></div>
+{% endblock %}
